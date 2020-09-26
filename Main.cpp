@@ -6,9 +6,7 @@
 #include <stdlib.h>
 #include <bits\stdc++.h>
 using namespace std;
-void sort(struct node **list)
-{
-}
+
 int main(int argc, char *argv[])
 {
     Nodo *topepila = nullptr;
@@ -72,35 +70,37 @@ int main(int argc, char *argv[])
     }
     cout << endl;
 
-    Nodo *aux;
-    Nodo *temp;
-    int vaux;
-    int cont = 0;
-    aux = new Nodo();
-    temp = new Nodo();
-    aux = topepila;
-    while (aux != NULL)
+    Nodo *actual;
+    Nodo *siguiente;
+    Nodo *vaux = new Nodo();
+    actual = new Nodo();
+    siguiente = new Nodo();
+    actual = topepila;
+    while (actual != NULL)
     {
-        vaux = aux->equipo->getpts();
-        while (aux->nextnode != NULL)
+        siguiente = actual->nextnode;
+        while (siguiente != NULL)
         {
-            if (vaux > aux->nextnode->equipo->getpts())
+            if (actual->equipo->getpts() < siguiente->equipo->getpts())
             {
-
-                vaux = aux->nextnode->equipo->getpts();
-                cout<<vaux<<endl;
+                vaux->equipo = siguiente->equipo;
+                siguiente->equipo = actual->equipo;
+                actual->equipo = vaux->equipo;
             }
+            siguiente = siguiente->nextnode;
         }
-cout<<"Aqui estoy"<<endl;
-        temp = aux;
-        aux = aux->nextnode;
-        aux->nextnode = temp;
+        cout << "Aqui estoy" << endl;
+        actual = actual->nextnode;
     }
-    ptr = topepila;
-    while (ptr != NULL)
+    cout << setw(17) << "PJ" << setw(4) << "G" << setw(4) << "E" << setw(4) << "P" << setw(5) << "GA" << setw(5) << "GC" << setw(5) << "DG" << setw(6) << "PTS" << endl;
+    int cont = 1;
+    Nodo *ptr2 = topepila;
+    while(ptr2!=NULL)
     {
-        cout << ptr->getequipo() << " ";
-        ptr = ptr->nextnode;
+        int letras = 14 - ptr2->equipo->getnombre().size();
+        cout << cont << "  " << ptr2->equipo->getnombre() << setw(letras) << ptr2->equipo->getpj() << setw(4) << ptr2->equipo->getg() << setw(4)
+             << ptr2->equipo->gete() << setw(4) << ptr2->equipo->getp() << setw(5) << ptr2->equipo->getga() << setw(5) << ptr2->equipo->getgc() << setw(5) << ptr2->equipo->getdg() << setw(5) << ptr2->equipo->getpts() << endl;
+    cont++;
+    ptr2=ptr2->nextnode;
     }
-    cout << endl;
 }
