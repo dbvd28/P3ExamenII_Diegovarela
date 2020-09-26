@@ -62,14 +62,6 @@ int main(int argc, char *argv[])
         topepila = nuevo;
     }
     lector.close();
-    Nodo *ptr = topepila;
-    while (ptr != NULL)
-    {
-        cout << ptr->getequipo() << " ";
-        ptr = ptr->nextnode;
-    }
-    cout << endl;
-
     Nodo *actual;
     Nodo *siguiente;
     Nodo *vaux = new Nodo();
@@ -89,7 +81,6 @@ int main(int argc, char *argv[])
             }
             siguiente = siguiente->nextnode;
         }
-        cout << "Aqui estoy" << endl;
         actual = actual->nextnode;
     }
     cout << setw(17) << "PJ" << setw(4) << "G" << setw(4) << "E" << setw(4) << "P" << setw(5) << "GA" << setw(5) << "GC" << setw(5) << "DG" << setw(6) << "PTS" << endl;
